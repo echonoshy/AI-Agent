@@ -1,0 +1,29 @@
+{
+  "agents": [
+    {
+      "type": "UserProxyAgent",
+      "name": "user_proxy",
+      "human_input_mode": "TERMINATE",
+      "max_consecutive_auto_reply": 10,
+      "is_termination_msg": "TERMINATE",
+      "code_execution_config": {
+        "work_dir": "coding",
+        "use_docker": false
+      }
+    },
+    {
+      "type": "AssistantAgent",
+      "name": "assistant",
+      "llm_config": {
+        "seed": 42,
+        "temperature": 0
+      }
+    }
+  ],
+
+  "start_conversation": {
+    "initiator": "user_proxy",
+    "recevior": "assistant",
+    "message": ""
+  }
+}

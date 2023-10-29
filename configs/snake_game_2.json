@@ -1,0 +1,54 @@
+{
+    "models": [
+        "gpt-35-turbo-16k"
+    ],
+    "agents": [
+        {
+            "type": "UserProxyAgent",
+            "name": "user_proxy",
+            "human_input_mode": "ALWAYS",
+            "max_consecutive_auto_reply": 20,
+            "llm_config": {},
+            "code_execution_config": {
+                "work_dir": "coding",
+                "use_docker": false,
+                "last_n_messages": 2
+            },
+            "system_message": "A human admin"
+        },
+        {
+            "type": "AssistantAgent",
+            "name": "pm",
+            "system_message": "creative in software product ideas",
+            "llm_config": {}
+        },
+        {
+            "type": "AssistantAgent",
+            "name": "coder",
+            "llm_config": {}
+        }
+    ],
+    "groups":[
+        {
+            "name": "group1",
+            "grouped_agents": [
+                "coder",
+                "pm",
+                "user_proxy"
+            ],
+            "messages": [],
+            "max_round": 12
+        }
+    ],
+    "managers":  [
+        {	
+			"name": "manager1",
+            "groupchat": "group1",
+            "llm_config": {}
+        }
+    ],
+    "start_conversation": {
+        "initiator": "user_proxy",
+        "recipient": "manager1"
+    }
+}

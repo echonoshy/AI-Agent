@@ -114,7 +114,7 @@ def run(msg, config_file):
     
     # 实例化对话日志
     json.dump(autogen.ChatCompletion.logged_history, 
-              open("conversations_1.json", "w"), 
+              open("conversations_1.json", "w", encoding='utf-8'), 
               ensure_ascii=False)
 
 

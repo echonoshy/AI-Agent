@@ -1,4 +1,6 @@
 import autogen
+import json 
+
 
 config_list_gpt4 = autogen.config_list_from_json(
     "OAI_CONFIG_LIST",
@@ -18,10 +20,12 @@ gpt4_config = {
 
 Admin = autogen.UserProxyAgent(
     name="Admin",
+    human_input_mode="ALWAYS",
+    max_consecutive_auto_reply=20,
+    is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"),
     code_execution_config={
         "work_dir": "WareHouse/gomoku",
-        "use_docker": False,
-        "llm_config": gpt4_config
+        "use_docker": False
     },
 )
 
@@ -90,12 +94,15 @@ manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=gpt4_config)
 
 autogen.ChatCompletion.start_logging()
 
-Admin.initiate_chat(
-    manager,
-    message="""
-请帮我实现一个五子棋游戏
-""",
-)
-
-with open("log.log", "w") as f:
-    f.write(autogen.ChatCompletion.logged_history)
+try: 
+    Admin.initiate_chat(
+        manager,
+        message="""
+    请帮我实现一个五子棋游戏
+    """,
+    )
+except Exception as e:
+    print(e)
+finally:
+    with open("log.log", "w", encoding="utf-8") as f:
+        f.write(json.dumps(autogen.ChatCompletion.logged_history, ensure_ascii=False))

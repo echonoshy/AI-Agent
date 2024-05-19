@@ -1,27 +1,13 @@
 [
     {
         "model": "gpt-35-turbo-16k",
-        "api_key": "34fed0251f8a43e5b64d56fc2456c6cc",
+        "api_key": "",
         "api_base": "https://jcs-chat-openai.openai.azure.com/",
         "api_type": "azure",
         "api_version": "2023-07-01-preview"
     },
     {
         "model": "gpt-4",
-        "api_key": "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"
-    },
-    {
-        "model": "gpt-4",
-        "api_key": "5bc2338bcf7b467596bcfc896eccb19a",
-        "api_base": "https://openai-qhd-sn.openai.azure.com/",
-        "api_type": "azure",
-        "api_version": "2023-07-01-preview"
-    },
-    {
-        "model": "gpt-4-32k",
-        "api_key": "5bc2338bcf7b467596bcfc896eccb19a",
-        "api_base": "https://openai-qhd-sn.openai.azure.com/",
-        "api_type": "azure",
-        "api_version": "2023-07-01-preview"
+        "api_key": ""
     }
 ]
